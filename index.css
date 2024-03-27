@@ -1,0 +1,132 @@
+* {
+    font-family: "Yantramanav", sans-serif;
+  }
+  body {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+  /* Style for header */
+  .header{
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid black;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 99%;
+    background-color: white;
+  }
+  .nav-items > ul{
+    display: flex;
+    gap: 20px;
+  }
+  .nav-items > ul > li{
+    list-style-type: none;
+  }
+  .nav-items > ul > li > a{
+    text-decoration: none;
+    color: black;
+    font-size: 1.4rem;
+  }
+  .nav-items > ul:last-child{
+    padding-right: 20px;
+  }
+  .logo{
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    border: 1px solid black;
+  }
+
+  /* style for body */
+  .body-container{
+    margin-top: 10rem;
+    margin-bottom: 3rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .filterTopRated {
+    margin: 1rem;
+    cursor: pointer;
+    padding: 5px 10px;
+    border-radius: 10px;
+  }
+  .filterTopRated:hover {
+    background-color: brown;
+    color: white;
+    border: 1px solid white;
+    outline: none;
+  }
+  .searchInput {
+    border: 1px solid brown;
+    border-radius: 10px;
+    padding: 5px 10px;
+  }
+  .res-container {
+    display: grid;
+    grid-template-columns: repeat(3, 300px);
+    gap: 30px;
+    justify-content: center;
+    margin-top: 1rem;
+  }
+  @media screen and (max-width: 1000px) {
+    .res-container {
+      grid-template-columns: repeat(2, 300px);
+    }
+  }
+  @media screen and (max-width: 700px) {
+    .res-container {
+      grid-template-columns: repeat(1, 300px);
+    }
+  }
+  
+  .resCard {
+    min-height: 350px;
+    width: 300px;
+    cursor: pointer;
+    border-radius: 10px;
+    padding-bottom: 4px;
+  }
+  .resCard:hover {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  }
+  .resCard > img {
+    width: 300px;
+    height: 250px;
+    border-radius: 10px;
+  }
+  @media screen and (max-width: 400px) {
+    .res-container {
+      grid-template-columns: repeat(1, 250px);
+    }
+    .resCard > img {
+      width: 250px;
+      height: 220px;
+    }
+    .resCard {
+      width: 250px;
+    }
+  }
+  
+  .rateTime {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 1rem;
+  }
+  .rating {
+    padding-bottom: 2px;
+  }
+  .rateTime > h4 {
+    margin: 0;
+  }
+  .cardBody > * {
+    margin: 4px;
+  }
+  
