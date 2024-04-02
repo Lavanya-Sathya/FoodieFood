@@ -97,6 +97,12 @@ body {
   .res-container {
     grid-template-columns: repeat(1, 300px);
   }
+  .filter {
+    flex-direction: column;
+  }
+  .search {
+    flex-direction: column;
+  }
 }
 
 .resCard {
