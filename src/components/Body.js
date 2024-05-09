@@ -1,6 +1,8 @@
 import RestaurantCard from "./RestaurantCard";
 import { useEffect, useState } from "react";
 import Shimmer from "./Shimmer";
+import { RES_API } from "../utils/constants";
+import { Link } from "react-router-dom";
 const Body = () => {
   const [RestaurantList, setRestaurantList] = useState([]);
   const [filteredRestaurantList, setFilteredRestaurantList] = useState([]);
@@ -11,26 +13,30 @@ const Body = () => {
   }, []);
 
   const fetchData = async () => {
-    const res = await fetch(
-      "https://www.swiggy.com/dapi/restaurants/list/v5?lat=12.96340&lng=77.58550&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
-    );
-    const jsonData = await res.json();
-    // console.log(jsonData);
-    const resData =
-      jsonData?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle
-        ?.restaurants;
-    setFilteredRestaurantList(resData);
-    setRestaurantList(resData);
-    // console.log(filteredRestaurantList);
+    try {
+      const res = await fetch(RES_API);
+      const jsonData = await res.json();
+      console.log(jsonData);
+      const resData =
+        jsonData?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle
+          ?.restaurants ||
+        jsonData?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle
+          ?.restaurants;
+      setFilteredRestaurantList(resData);
+      setRestaurantList(resData);
+      console.log(filteredRestaurantList);
+    } catch (error) {
+      console.log("Error: ", error);
+    }
   };
 
-  return RestaurantList.length === 0 ? (
+  return RestaurantList?.length === 0 ? (
     <Shimmer />
   ) : (
-    <div className="body-container">
-      <div className="filter">
+    <div className="mb-4">
+      <div className="text-center">
         <button
-          className="btn filterTopRated"
+          className="bg-orange-500 mb-4 px-4 py-2 rounded-lg hover:bg-orange-400"
           onClick={() => {
             topRatedRes = RestaurantList.filter((cards) => {
               return cards?.info?.avgRatingString >= 4.5;
@@ -40,14 +46,14 @@ const Body = () => {
         >
           Top Rated Restaurant
         </button>
-        <div className="search">
+        <div className="mb-4 flex justify-center gap-2">
           <input
             type="text"
-            className="searchInput"
+            className="border-2 rounded-lg focus:outline-none px-2"
             onChange={(e) => setSearch(e.target.value)}
           />
           <button
-            className="btn searchBtn"
+            className="bg-blue-950 text-white px-4 rounded-lg py-2 hover:bg-blue-900"
             onClick={() => {
               let filteredData = RestaurantList.filter((card) => {
                 return card?.info?.name
@@ -64,21 +70,22 @@ const Body = () => {
             Search
           </button>
           <button
-            className="btn resetBtn"
+            className="bg-blue-950 text-white px-4 rounded-lg py-2 hover:bg-blue-900"
             onClick={() => {
               setFilteredRestaurantList(RestaurantList);
               setSearch("");
-              console.log("search: ", search);
             }}
           >
             Reset
           </button>
         </div>
       </div>
-      <div className="res-container">
-        {filteredRestaurantList.map((cards) => {
-          return <RestaurantCard resData={cards} key={cards.info.id} />;
-        })}
+      <div className="w-10/12 xl:w-8/12 mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 justify-items-center gap-2">
+        {filteredRestaurantList?.map((cards) => (
+          <Link to={`/restaurant/${cards?.info?.id}`} key={cards?.info?.id}>
+            <RestaurantCard resData={cards?.info} />
+          </Link>
+        ))}
       </div>
     </div>
   );
