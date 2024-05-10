@@ -9,19 +9,21 @@ const RestaurantMenu = () => {
   const resCategories =
     resMenu?.data?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards;
   const {
-    id = "",
-    name = "",
-    locality = "",
-    cuisines = [],
-    avgRatingString = "",
-    totalRatingsString = "",
-    costForTwoMessage = "",
-    feeDetails = {},
+    id,
+    name,
+    locality,
+    cuisines,
+    avgRatingString,
+    totalRatingsString,
+    costForTwoMessage,
+    feeDetails,
   } = restaurantInfo;
   console.log("resMenu from res", resMenu);
   console.log("resCategories from res", resCategories);
 
-  return (
+  return resMenu?.length === 0 ? (
+    <div>Loading....</div>
+  ) : (
     <div className="w-10/12 md:w-8/12 mx-auto">
       <h1 className="font-bold text-xl mb-2"> {name}</h1>
       <div className="shadow-xl ring-1 ring-slate-900/5 bg-white  px-2 py-4 rounded-lg ">
@@ -30,7 +32,7 @@ const RestaurantMenu = () => {
           {totalRatingsString}) • {costForTwoMessage}
         </p>
         <h3 className="text-orange-500 underline pb-1">
-          {cuisines.join(",  ")}
+          {cuisines?.join(",  ")}
         </h3>
         <p className="border-b-2 pb-2">
           <span className="font-bold ">Outlet </span>

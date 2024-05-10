@@ -1,3 +1,4 @@
+// Body of home page
 import RestaurantCard from "./RestaurantCard";
 import { useEffect, useState } from "react";
 import { RES_API } from "../utils/constants";
@@ -24,7 +25,7 @@ const Body = () => {
           ?.restaurants;
       setFilteredRestaurantList(resData);
       setRestaurantList(resData);
-      console.log(filteredRestaurantList);
+      // console.log(filteredRestaurantList);
     } catch (error) {
       console.log("Error: ", error);
     }
