@@ -1,8 +1,8 @@
 import RestaurantCard from "./RestaurantCard";
 import { useEffect, useState } from "react";
-import Shimmer from "./Shimmer";
 import { RES_API } from "../utils/constants";
 import { Link } from "react-router-dom";
+import ShimmerCard from "./ShimmerCard";
 const Body = () => {
   const [RestaurantList, setRestaurantList] = useState([]);
   const [filteredRestaurantList, setFilteredRestaurantList] = useState([]);
@@ -31,7 +31,7 @@ const Body = () => {
   };
 
   return RestaurantList?.length === 0 ? (
-    <Shimmer />
+    <ShimmerCard />
   ) : (
     <div className="mb-4">
       <div className="text-center">
