@@ -10,7 +10,7 @@ const RestaurantCategory = (props) => {
       {itemCards && (
         <div className="border-b-8">
           <div
-            className="  cursor-pointer font-bold text-xl py-4 flex justify-between"
+            className=" cursor-pointer font-bold text-xl py-4 flex justify-between"
             onClick={() => setIsShow(!isShow)}
           >
             <h1>
@@ -18,10 +18,7 @@ const RestaurantCategory = (props) => {
             </h1>
             <p className="pr-2">v</p>
           </div>
-          <div>
-            {isShow &&
-              itemCards?.map((item, idx) => <ItemList data={item} key={idx} />)}
-          </div>
+          <div>{isShow && <ItemList data={itemCards} action="ADD" />}</div>
         </div>
       )}
     </div>

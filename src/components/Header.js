@@ -1,6 +1,8 @@
 import { Link } from "react-router-dom";
 import logo from "../../images/logo.png";
+import { useSelector } from "react-redux";
 const Header = () => {
+  const cartItem = useSelector((store) => store.cart.items);
   return (
     <div className="bg-white flex items-center justify-between fixed w-full top-0 left-0 shadow-lg z-20">
       <div className="">
@@ -18,7 +20,7 @@ const Header = () => {
             <Link to="/service">Service</Link>
           </li>
           <li className="hover:border-b-2 border-orange-500">
-            <Link to="/cart">Cart</Link>
+            <Link to="/cart">Cart ({cartItem.length} Items)</Link>
           </li>
         </ul>
       </div>

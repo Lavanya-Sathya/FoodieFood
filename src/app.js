@@ -7,15 +7,19 @@ import About from "./components/About";
 import Service from "./components/Service";
 import Cart from "./components/Cart";
 import RestaurantMenu from "./components/RestaurantMenu";
+import { Provider } from "react-redux";
+import appStore from "./utils/appStore";
 
 const AppLayout = () => {
   return (
-    <div className="app">
-      <Header />
-      <div className="mt-40">
-        <Outlet />
+    <Provider store={appStore}>
+      <div className="app">
+        <Header />
+        <div className="mt-40">
+          <Outlet />
+        </div>
       </div>
-    </div>
+    </Provider>
   );
 };
 const appRouter = createBrowserRouter([
