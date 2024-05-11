@@ -32,7 +32,7 @@ const RestaurantMenu = () => {
     avgRatingString,
     totalRatingsString,
     costForTwoMessage,
-    feeDetails,
+    sla,
   } = restaurantInfo;
   console.log("restaurantInfo:", restaurantInfo);
   console.log("resMenu from res", resMenu);
@@ -56,7 +56,7 @@ const RestaurantMenu = () => {
           {locality}
         </p>
         <p className="pt-2">
-          {HTMLParse(feeDetails?.message || "Delivery fee will apply")}
+          {` Far ${sla?.lastMileTravelString} |  Delivery fee will apply`}
         </p>
       </div>
       <div className="my-10">
