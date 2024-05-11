@@ -1,10 +1,26 @@
 import { useParams } from "react-router-dom";
 import useRestaurantMenu from "../utils/useRestaurantMenu";
+import { useEffect, useState } from "react";
 import HTMLParse from "html-react-parser";
 import RestaurantCategory from "./RestaurantCategory";
+import { MENU_API } from "../utils/constants";
 const RestaurantMenu = () => {
   const { resId } = useParams();
-  const resMenu = useRestaurantMenu(resId);
+  // const resMenu = useRestaurantMenu(resId);
+  const [resMenu, setMenu] = useState();
+  useEffect(() => {
+    fetchMenu();
+  }, []);
+  const fetchMenu = async () => {
+    try {
+      const fetchData = await fetch(MENU_API + resId);
+      const jsonData = await fetchData.json();
+      setMenu(jsonData);
+      // console.log(" data: ", jsonData);
+    } catch (error) {
+      console.log("Error: ", error);
+    }
+  };
   const restaurantInfo = resMenu?.data?.cards[2]?.card?.card?.info || {};
   const resCategories =
     resMenu?.data?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards;
