@@ -22,7 +22,7 @@ const RestaurantMenu = () => {
   console.log("resMenu from res", resMenu);
   console.log("resCategories from res", resCategories);
 
-  return resMenu?.length === 0 ? (
+  return !restaurantInfo ? (
     <div>Loading....</div>
   ) : (
     <div className="w-10/12 md:w-8/12 mx-auto">
