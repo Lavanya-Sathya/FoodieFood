@@ -11,10 +11,13 @@ const ItemList = (props) => {
   return (
     <div>
       {data?.map((item) => {
-        const { name, price, ratings, defaultPrice, description, imageId } =
+        const { id, name, price, ratings, defaultPrice, description, imageId } =
           item?.card?.info;
         return (
-          <div className="flex justify-between flex-col sm:flex-row mb-4 border-b-2 last:border-none pb-14 sm:pb-4  gap-2">
+          <div
+            className="flex justify-between flex-col sm:flex-row mb-4 border-b-2 last:border-none pb-14 sm:pb-4  gap-2"
+            key={id}
+          >
             <div className=" text-gray-700 sm:w-8/12 ">
               <h1 className="font-bold text-lg">{name}</h1>
               <h1 className="font-bold text-lg">
