@@ -18,8 +18,9 @@ const RestaurantMenu = () => {
     costForTwoMessage,
     feeDetails,
   } = restaurantInfo;
-  // console.log("resMenu from res", resMenu);
-  // console.log("resCategories from res", resCategories);
+  console.log("restaurantInfo:", restaurantInfo);
+  console.log("resMenu from res", resMenu);
+  console.log("resCategories from res", resCategories);
 
   return resMenu?.length === 0 ? (
     <div>Loading....</div>
