@@ -1,40 +1,77 @@
 // Body of home page
 import RestaurantCard from "./RestaurantCard";
 import { useEffect, useState } from "react";
-import { RES_API } from "../utils/constants";
 import { Link } from "react-router-dom";
 import ShimmerCard from "./ShimmerCard";
+import useRestaurant from "../utils/useRestaurant";
+import { IMG_URL } from "../utils/constants";
+import { MdChevronLeft, MdChevronRight } from "react-icons/md";
 const Body = () => {
+  const resData = useRestaurant();
   const [RestaurantList, setRestaurantList] = useState([]);
+  const [foodList, setFoodList] = useState([]);
   const [filteredRestaurantList, setFilteredRestaurantList] = useState([]);
   const [search, setSearch] = useState("");
 
-  useEffect(() => {
-    fetchData();
-  }, []);
-
-  const fetchData = async () => {
-    try {
-      const res = await fetch(RES_API);
-      const jsonData = await res.json();
-      console.log(jsonData);
-      const resData =
-        jsonData?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle
-          ?.restaurants ||
-        jsonData?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle
-          ?.restaurants;
-      setFilteredRestaurantList(resData);
-      setRestaurantList(resData);
-      // console.log(filteredRestaurantList);
-    } catch (error) {
-      console.log("Error: ", error);
-    }
+  const slideLeft = () => {
+    var slider = document.getElementById("slider");
+    slider.scrollLeft = slider.scrollLeft - 500;
   };
+  const slideRight = () => {
+    var slider = document.getElementById("slider");
+    slider.scrollLeft = slider.scrollLeft + 500;
+  };
+  useEffect(() => {
+    if (resData) {
+      const data =
+        resData?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle
+          ?.restaurants ||
+        resData?.data?.cards[2]?.card?.card?.imageGridCards?.infoWithStyle
+          ?.restaurants;
+      const data2 =
+        resData?.data?.cards[0]?.card?.card?.imageGridCards?.info ||
+        resData?.data?.cards[0]?.card?.card?.gridElements?.infoWithStyle?.info;
+      setRestaurantList(data);
+      setFilteredRestaurantList(data);
+      setFoodList(data2);
+      console.log("data2: ", data2);
+      console.log("FOODLIST: ", foodList);
+      console.log("RestaurantList: ", RestaurantList);
+    }
+  }, [resData]);
 
   return RestaurantList?.length === 0 ? (
     <ShimmerCard />
   ) : (
-    <div className="mb-4">
+    <div className="mb-4 w-10/12 xl:w-9/12 mx-auto ">
+      <h1 className="font-bold text-2xl ">
+        {resData?.data?.cards[0]?.card?.card?.header?.title}
+      </h1>
+      <div className="relative flex items-center bg-white">
+        <MdChevronLeft
+          size={40}
+          className="opacity-50 cursor-pointer hover:opacity-100"
+          onClick={slideLeft}
+        />
+        <div
+          id="slider"
+          className="w-full h-full overflow-x-scroll scroll whitespace-nowrap scroll-smooth no-scrollbar"
+        >
+          {foodList?.map((item) => (
+            <img
+              src={IMG_URL + item?.imageId}
+              alt="foodItems"
+              key={item?.id}
+              className="w-[200px] h-[200px] inline-block p-2 cursor-pointer hover:scale-105 ease-in-out duration-300"
+            />
+          ))}
+        </div>
+        <MdChevronRight
+          size={40}
+          className="opacity-50 cursor-pointer hover:opacity-100"
+          onClick={slideRight}
+        />
+      </div>
       <div className="text-center">
         <button
           className="bg-orange-500 mb-4 px-4 py-2 rounded-lg hover:bg-orange-400"
@@ -81,7 +118,7 @@ const Body = () => {
           </button>
         </div>
       </div>
-      <div className="w-10/12 xl:w-8/12 mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 justify-items-center gap-2">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 justify-items-center gap-2">
         {filteredRestaurantList?.map((cards) => (
           <Link to={`/restaurant/${cards?.info?.id}`} key={cards?.info?.id}>
             <RestaurantCard resData={cards?.info} />

@@ -32,7 +32,7 @@ const ShimmerCard = () => {
           </button>
         </div>
       </div>
-      <div className="w-10/12 xl:w-8/12 mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 justify-items-center gap-2">
+      <div className="w-10/12 xl:w-9/12 mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 justify-items-center gap-2">
         {cards}
       </div>
     </div>
