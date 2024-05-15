@@ -30,9 +30,6 @@ const Body = () => {
       setFoodList(data2);
     }
   }, [resData]);
-  console.log("FOODLIST: ", foodList);
-  console.log("RestaurantList: ", RestaurantList);
-  console.log("resTitle: ", resTitle);
 
   return RestaurantList?.length === 0 ? (
     <ShimmerCard />

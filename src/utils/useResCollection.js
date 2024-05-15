@@ -1,9 +1,11 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const useResCollection = (props) => {
-  const { id, tag } = props;
+  console.log("props: ", props);
+  const { collectionId, tag } = props;
+  console.log("id: ", collectionId);
   const [collection, setCollection] = useState([]);
-  const COLLECTION_API = `https://www.swiggy.com/dapi/restaurants/list/v5?lat=12.96340&lng=77.58550&collection=${id}&tags=${tag}&sortBy=&filters=&type=rcv2&offset=0&page_type=null`;
+  const COLLECTION_API = `https://www.swiggy.com/dapi/restaurants/list/v5?lat=12.96340&lng=77.58550&collection=${collectionId}&tags=${tag}&sortBy=&filters=&type=rcv2&offset=0&page_type=null`;
   useEffect(() => {
     fetchCollection();
   }, []);

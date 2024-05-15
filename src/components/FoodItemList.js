@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { IMG_URL } from "../utils/constants";
 import { MdChevronLeft, MdChevronRight } from "react-icons/md";
 const FoodItemList = (props) => {
@@ -33,12 +34,16 @@ const FoodItemList = (props) => {
             const collectionTag = collectionData[1]?.split("=")[1] || "";
 
             return (
-              <img
-                src={IMG_URL + imageId}
-                alt="foodItems"
+              <Link
                 key={id}
-                className=" w-[150px] h-[150px] md:w-[200px] md:h-[200px] inline-block p-2 cursor-pointer hover:scale-105 ease-in-out duration-300"
-              />
+                to={`/restaurant/collection/${collectionId}/${collectionTag}`}
+              >
+                <img
+                  src={IMG_URL + imageId}
+                  alt="foodItems"
+                  className=" w-[150px] h-[150px] md:w-[200px] md:h-[200px] inline-block p-2 cursor-pointer hover:scale-105 ease-in-out duration-300"
+                />
+              </Link>
             );
           })}
         </div>
