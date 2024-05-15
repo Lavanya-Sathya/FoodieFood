@@ -18,12 +18,21 @@ const RestaurantMenu = () => {
     costForTwoMessage,
     sla,
   } = restaurantInfo;
-  // console.log("restaurantInfo:", restaurantInfo);
-  // console.log("resMenu from res", resMenu);
-  // console.log("resCategories from res", resCategories);
 
-  return !restaurantInfo ? (
-    <div>Loading....</div>
+  return !resMenu ? (
+    // Shimmer
+    <div className="w-10/12 md:w-8/12 mx-auto">
+      <h1 className="border-[10px] w-5/12 mb-2"> </h1>
+      <div className="shadow-xl ring-1 ring-slate-900/5 bg-white h-[150px] px-2 py-4 rounded-lg mb-12 "></div>
+      <div className="border-b-8 cursor-pointer font-bold text-xl py-4 flex justify-between">
+        <h1 className="border-[10px] w-5/12 mb-2"></h1>
+        <p className="pr-2">v</p>
+      </div>
+      <div className="border-b-8 cursor-pointer font-bold text-xl py-4 flex justify-between">
+        <h1 className="border-[10px] w-5/12 mb-2"></h1>
+        <p className="pr-2">v</p>
+      </div>
+    </div>
   ) : (
     <div className="w-10/12 md:w-8/12 mx-auto">
       <h1 className="font-bold text-xl mb-2"> {name}</h1>

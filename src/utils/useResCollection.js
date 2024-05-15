@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 
 const useResCollection = (props) => {
-  console.log("props: ", props);
   const { collectionId, tag } = props;
   console.log("id: ", collectionId);
   const [collection, setCollection] = useState([]);

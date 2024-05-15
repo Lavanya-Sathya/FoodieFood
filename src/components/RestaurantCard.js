@@ -1,3 +1,4 @@
+// Creates the Restaurant cards
 import { useState } from "react";
 import { IMG_URL } from "../utils/constants";
 
