@@ -9,6 +9,8 @@ import Cart from "./components/Cart";
 import RestaurantMenu from "./components/RestaurantMenu";
 import { Provider } from "react-redux";
 import appStore from "./utils/appStore";
+import Footer from "./components/Footer";
+import ResCollection from "./components/ResCollection";
 
 const AppLayout = () => {
   return (
@@ -18,6 +20,7 @@ const AppLayout = () => {
         <div className="mt-40">
           <Outlet />
         </div>
+        <Footer />
       </div>
     </Provider>
   );
@@ -46,6 +49,10 @@ const appRouter = createBrowserRouter([
       {
         path: "/restaurant/:resId",
         element: <RestaurantMenu />,
+      },
+      {
+        path: "/restaurant/collection/:resId/:tag",
+        element: <ResCollection />,
       },
     ],
   },

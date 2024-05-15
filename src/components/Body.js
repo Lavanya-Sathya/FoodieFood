@@ -11,8 +11,6 @@ const Body = () => {
   const [RestaurantList, setRestaurantList] = useState([]);
   const [foodList, setFoodList] = useState([]);
   const [resTitle, setResTitle] = useState("");
-  // const [filteredRestaurantList, setFilteredRestaurantList] = useState([]);
-  const [search, setSearch] = useState("");
 
   useEffect(() => {
     if (resData) {
@@ -29,7 +27,6 @@ const Body = () => {
         resData?.data?.cards[0]?.card?.card;
       setRestaurantList(data);
       setResTitle(resTitle);
-      // setFilteredRestaurantList(data);
       setFoodList(data2);
     }
   }, [resData]);
