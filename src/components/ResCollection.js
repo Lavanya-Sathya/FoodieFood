@@ -12,8 +12,6 @@ const ResCollection = () => {
     const card = data?.data?.cards;
     setCollection(card);
   }, [data]);
-  console.log("data collection: ", collection);
-  console.log("data : ", data);
 
   return collection ? (
     <div className="mb-8 w-10/12 xl:w-9/12 mx-auto ">
@@ -29,7 +27,6 @@ const ResCollection = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 justify-items-center gap-2">
           {collection.map((item) => {
             const { info } = item?.card?.card;
-            console.log("collection: ", info);
             return (
               info && (
                 <Link to={`/restaurant/${info?.id}`} key={info?.id}>

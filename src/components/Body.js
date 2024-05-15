@@ -32,7 +32,14 @@ const Body = () => {
   }, [resData]);
 
   return RestaurantList?.length === 0 ? (
-    <ShimmerCard />
+    <div>
+      <div className="mb-4 w-10/12 xl:w-9/12 mx-auto ">
+        <h1 className=" mb-4 border-[15px] w-3/12"></h1>
+        <div className=" h-[150px] md:h-[200px] bg-white"></div>
+        <h1 className=" mb-2 border-[15px] w-4/12 mt-8"></h1>
+      </div>
+      <ShimmerCard />
+    </div>
   ) : (
     <div className="mb-4 w-10/12 xl:w-9/12 mx-auto ">
       <div>
