@@ -6,16 +6,16 @@ const FoodItemList = (props) => {
   const foodList =
     data?.imageGridCards?.info || data?.gridElements?.infoWithStyle?.info;
   const slideLeft = () => {
-    var slider = document.getElementById("slider");
+    let slider = document.getElementById("slider");
     slider.scrollLeft = slider.scrollLeft - 250;
   };
   const slideRight = () => {
-    var slider = document.getElementById("slider");
+    let slider = document.getElementById("slider");
     slider.scrollLeft = slider.scrollLeft + 250;
   };
 
   return (
-    <div className="my-8">
+    <div className="my-8 py-10 border-b-4">
       <h1 className="font-bold text-2xl mb-4">{data?.header?.title}</h1>
       <div className="relative flex items-center bg-white">
         <MdChevronLeft

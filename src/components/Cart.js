@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import ItemList from "./ItemList";
 import { clearCart } from "../utils/cartSlice";
-
+import cartImg from "../../images/cart.png";
 const Cart = () => {
   const cartItems = useSelector((store) => store.cart.items);
   const dispatch = useDispatch();
@@ -13,7 +13,7 @@ const Cart = () => {
       <div className="text-center mb-8">
         <h1 className="font-bold text-xl">Cart</h1>
         <button
-          className="bg-blue-950 text-white px-4 py-2 rounded-lg my-4"
+          className="bg-blue-950 text-white px-4 py-2 rounded-lg my-4 hover:bg-blue-900"
           onClick={handleClear}
         >
           Clear Cart
@@ -22,9 +22,16 @@ const Cart = () => {
       {cartItems.length > 0 ? (
         <ItemList data={cartItems} action={"Remove"} />
       ) : (
-        <h1 className="text-center font-bold text-green-700 text-2xl">
-          Your Cart is Empty
-        </h1>
+        <div className="flex justify-center items-center gap-6 mb-14">
+          <img
+            src={cartImg}
+            className="pl-4 bg-white py-4 rounded-lg w-[100px] h-[100px] "
+          />
+          <div className="text-center font-bold text-green-700 text-xl ">
+            <h1>Your Cart is Empty</h1>
+            <h1>Shop Now</h1>
+          </div>
+        </div>
       )}
     </div>
   );
