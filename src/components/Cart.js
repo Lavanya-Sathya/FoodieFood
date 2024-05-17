@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
-import ItemList from "./ItemList";
 import { clearCart } from "../utils/cartSlice";
 import cartImg from "../../images/cart.png";
+import CartList from "./CartList";
 const Cart = () => {
   const cartItems = useSelector((store) => store.cart.items);
   const dispatch = useDispatch();
@@ -20,7 +20,7 @@ const Cart = () => {
         </button>
       </div>
       {cartItems.length > 0 ? (
-        <ItemList data={cartItems} action={"Remove"} />
+        <CartList data={cartItems} />
       ) : (
         <div className="flex justify-center items-center gap-6 mb-14">
           <img

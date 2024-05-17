@@ -1,20 +1,24 @@
 import { useDispatch } from "react-redux";
 import { IMG_URL } from "../utils/constants";
-import { addItems } from "../utils/cartSlice";
+import { addItems, removeItem } from "../utils/cartSlice";
+import { BiMinus, BiPlus } from "react-icons/bi";
 import { GiSolidLeaf } from "react-icons/gi";
 import { FaDrumstickBite } from "react-icons/fa";
 import { FaStarHalfStroke } from "react-icons/fa6";
-
-const ItemList = (props) => {
+const CartList = (props) => {
   const { data } = props;
+  console.log("daata: ", data);
   const dispatch = useDispatch();
-  const handleAdd = (Item) => {
-    dispatch(addItems(Item));
+  const handleRemove = (item) => {
+    dispatch(removeItem(item));
   };
-
+  const handleAdd = (item) => {
+    dispatch(addItems(item));
+  };
   return (
     <div>
       {data?.map((item) => {
+        console.log("item from cartList: ", item);
         const {
           id,
           name,
@@ -22,12 +26,11 @@ const ItemList = (props) => {
           ratings,
           defaultPrice,
           description,
-          imageId,
           isVeg,
           isBestseller,
-          isGuiltfree,
+          imageId,
         } = item?.card?.info;
-
+        const counter = item?.counter;
         return (
           <div
             className="flex justify-between flex-col sm:flex-row mb-4 border-b-2 last:border-none pb-14 sm:pb-4  gap-2"
@@ -61,16 +64,27 @@ const ItemList = (props) => {
               )}
               <p>{description}</p>
             </div>
-            <div className="relative pb-8">
+            <div className="flex flex-col gap-1 pb-8">
               <img
                 src={IMG_URL + imageId}
                 className="rounded-lg w-[100px] sm:w-[150px] sm:h-[150px]"
               />
               <button
-                className="bg-white px-4 py-2 rounded-lg text-green-500 shadow-lg  absolute sm:left-1/4 hover:bg-slate-100"
-                onClick={() => handleAdd(item)}
+                className="bg-white px-4 py-2 rounded-lg text-green-500 shadow-lg  sm:left-1/4  flex gap-4 justify-center items-center text-lg"
+                // onClick={() => handleRemove(item)}
+                // value={id}
               >
-                ADD
+                <BiMinus
+                  size={25}
+                  className="opacity-70 hover:opacity-100"
+                  onClick={() => handleRemove(item)}
+                />
+                {counter}
+                <BiPlus
+                  size={25}
+                  className="opacity-70 hover:opacity-100"
+                  onClick={() => handleAdd(item)}
+                />
               </button>
             </div>
           </div>
@@ -79,4 +93,4 @@ const ItemList = (props) => {
     </div>
   );
 };
-export default ItemList;
+export default CartList;

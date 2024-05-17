@@ -37,7 +37,13 @@ const Body = () => {
       setTitle(title);
     }
   }, [resData]);
-  console.log(resList);
+  // fetch all card Id's into relistId
+  const resListIds = resList.map((card) => card?.info.id);
+  // filter RestaurantList to obtain the repeated cards from reList and RestaurantList
+  const repeatedCard = RestaurantList.filter((card) =>
+    resListIds.includes(card?.info?.id)
+  );
+
   return RestaurantList?.length === 0 ? (
     // Shimmer
     <div>
@@ -64,11 +70,20 @@ const Body = () => {
       <div>
         <h1 className="font-bold text-2xl mb-4 ">{title}</h1>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 justify-items-center gap-2">
-          {resList?.map((cards) => (
-            <Link to={`/restaurant/${cards?.info?.id}`} key={cards?.info?.id}>
-              <RestaurantCard resData={cards?.info} />
-            </Link>
-          ))}
+          {/* Display only cards that is not present in the Restaurant List */}
+          {resList?.map((cards) => {
+            return (
+              !repeatedCard.includes(cards?.info?.id) && (
+                <Link
+                  to={`/restaurant/${cards?.info?.id}`}
+                  key={cards?.info?.id}
+                >
+                  <RestaurantCard resData={cards?.info} />
+                </Link>
+              )
+            );
+          })}
+          {/* Display all the cards from the restaurant List */}
           {RestaurantList?.map((cards) => (
             <Link to={`/restaurant/${cards?.info?.id}`} key={cards?.info?.id}>
               <RestaurantCard resData={cards?.info} />
