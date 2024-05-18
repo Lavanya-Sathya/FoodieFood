@@ -1,3 +1,5 @@
+// Fetch data on basis of collectionId and tag,
+// this is used in FoodItemList.
 import { useEffect, useState } from "react";
 
 const useResCollection = (props) => {

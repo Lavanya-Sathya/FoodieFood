@@ -1,3 +1,4 @@
+// This component is the shimmer for restaurant card
 const ShimmerCard = () => {
   const cards = [];
   for (let i = 0; i < 10; i++) {

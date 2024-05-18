@@ -1,3 +1,5 @@
+//This component loads all the restaurant that consist of particular food
+// that we have selected from the top  horizontal scrollable section in home page(body)
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import useResCollection from "../utils/useResCollection";

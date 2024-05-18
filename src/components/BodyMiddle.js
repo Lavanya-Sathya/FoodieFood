@@ -1,3 +1,4 @@
+// The horizontal scrollable of restaurant in home page(body)
 import { Link } from "react-router-dom";
 import RestaurantCard from "./RestaurantCard";
 import { MdChevronLeft, MdChevronRight } from "react-icons/md";

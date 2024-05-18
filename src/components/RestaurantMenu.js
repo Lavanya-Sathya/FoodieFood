@@ -1,3 +1,5 @@
+// This component consist of the  structure for each restaurant
+
 import { useParams } from "react-router-dom";
 import useRestaurantMenu from "../utils/useRestaurantMenu";
 import RestaurantCategory from "./RestaurantCategory";
@@ -9,12 +11,13 @@ const RestaurantMenu = () => {
 
   const [isNonVeg, setIsNonVeg] = useState(false);
   const [isVeg, setIsVeg] = useState(false);
+  const [isBestseller, setIsBestseller] = useState(false);
 
   const [restaurantInfo, setRestaurantInfo] = useState([]);
   const [resCategories, setResCategories] = useState([]);
   const [filteredResCategories, setFilteredResCategories] = useState([]);
-  const [itemCardsData, setItemCardsData] = useState([]);
 
+  // res categories data fetched from useRestaurantMenu are updated to restaurantInfo,resCategories and filteredResCategories
   useEffect(() => {
     const restaurantInfo = resMenu?.data?.cards[2]?.card?.card?.info || {};
     const data =
@@ -26,35 +29,49 @@ const RestaurantMenu = () => {
     console.log("resCategories: ", resCategories);
   }, [resMenu]);
 
-  useEffect(() => {
-    if (isVeg) {
-      const filterVeg = resCategories?.map((item) => {
-        const data = item?.card?.card?.itemCards?.filter(
-          (cardData) => cardData?.card?.info?.isVeg
-        );
-        return {
-          ...item,
-          card: {
-            ...item?.card,
-            card: {
-              ...item?.card?.card,
-              itemCards: data,
-            },
-          },
-        };
+  // function to filter by veg, non ved and bestseller cards
+  const filterCategory = (isVeg, isNonVeg, isBestseller) => {
+    return resCategories?.map((item) => {
+      const data = item?.card?.card?.itemCards?.filter((cardData) => {
+        if (isVeg && isBestseller) {
+          return (
+            cardData?.card?.info?.isVeg && cardData?.card?.info?.isBestseller
+          );
+        } else if (isNonVeg && isBestseller) {
+          return (
+            !cardData?.card?.info?.isVeg && cardData?.card?.info?.isBestseller
+          );
+        } else if (isVeg) {
+          return cardData?.card?.info?.isVeg;
+        } else if (isNonVeg) {
+          return !cardData?.card?.info?.isVeg;
+        } else if (isBestseller) {
+          return cardData?.card?.info?.isBestseller;
+        }
       });
 
-      console.log("filterVeg: ", filterVeg);
-      setFilteredResCategories(filterVeg);
+      return {
+        ...item,
+        card: {
+          ...item?.card,
+          card: {
+            ...item?.card?.card,
+            itemCards: data,
+          },
+        },
+      };
+    });
+  };
+
+  // useEffect will be called when there is any changes made to isVeg, isNonVeg, isBestseller and resCategories
+  useEffect(() => {
+    if (isVeg || isNonVeg || isBestseller) {
+      setFilteredResCategories(filterCategory(isVeg, isNonVeg, isBestseller));
     } else {
       setFilteredResCategories(resCategories);
     }
-  }, [isVeg]);
-  useEffect(() => {
-    if (isNonVeg) {
-      console.log("isNonVeg: ", isNonVeg);
-    }
-  }, [isNonVeg]);
+    console.log("filteredResCategories: ", filteredResCategories);
+  }, [isVeg, isNonVeg, isBestseller, resCategories]);
 
   const {
     id,
@@ -67,19 +84,8 @@ const RestaurantMenu = () => {
     sla,
   } = restaurantInfo;
 
-  // to handle veg
-  const handleVeg = () => {
-    setIsVeg(!isVeg);
-    setIsNonVeg(false);
-  };
-
-  // to show only non veg
-  const handleNonVeg = () => {
-    setIsNonVeg(!isNonVeg);
-    setIsVeg(false);
-  };
   return !resMenu ? (
-    // Shimmer
+    // Shimmer will be displayed while data is being fetched/ loaded
     <div className="w-10/12 md:w-8/12 mx-auto">
       <h1 className="border-[10px] w-5/12 mb-2"> </h1>
       <div className="shadow-xl ring-1 ring-slate-900/5 bg-white h-[150px] px-2 py-4 rounded-lg mb-12 "></div>
@@ -95,6 +101,7 @@ const RestaurantMenu = () => {
   ) : (
     <div className="w-10/12 md:w-8/12 mx-auto">
       <h1 className="font-bold text-xl mb-2"> {name}</h1>
+      {/* card containing the restaurant details */}
       <div className="shadow-xl ring-1 ring-slate-900/5 bg-white  px-2 py-4 rounded-lg ">
         <p className="font-bold pb-1">
           <span className="text-green-600">★</span> {avgRatingString} (
@@ -111,13 +118,17 @@ const RestaurantMenu = () => {
           {` Far ${sla?.lastMileTravelString} |  Delivery fee will apply`}
         </p>
       </div>
+      {/* filter options are displayed here */}
       <div className="mt-20 flex gap-8 pb-8 border-b-2">
         <label className="flex cursor-pointer select-none items-center border-[1px] px-4 py-2 border-gray-500 rounded-full">
           <div className="relative">
             <input
               type="checkbox"
               checked={isVeg}
-              onChange={handleVeg}
+              onChange={() => {
+                setIsVeg(!isVeg);
+                setIsNonVeg(false);
+              }}
               className="sr-only"
             />
             <div
@@ -140,7 +151,10 @@ const RestaurantMenu = () => {
             <input
               type="checkbox"
               checked={isNonVeg}
-              onChange={handleNonVeg}
+              onChange={() => {
+                setIsNonVeg(!isNonVeg);
+                setIsVeg(false);
+              }}
               className="sr-only"
             />
             <div
@@ -156,12 +170,18 @@ const RestaurantMenu = () => {
           </div>
         </label>
         <div
-          className="border-[1px] px-4
-         py-2 border-gray-500 rounded-full text-xl cursor-pointer"
+          className={`border-[1px] px-4
+         py-2 border-gray-500 rounded-full text-xl cursor-pointer ${
+           isBestseller ? "hover: bg-gray-400" : ""
+         }`}
+          onClick={() => {
+            setIsBestseller(!isBestseller);
+          }}
         >
           Bestseller
         </div>
       </div>
+      {/* All the available categories in the restaurant are displayed here */}
       <div className="my-8">
         {filteredResCategories?.map((item, idx) => (
           <RestaurantCategory items={item?.card?.card} key={idx} />

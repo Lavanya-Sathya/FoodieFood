@@ -1,14 +1,14 @@
+// Restaurant categories heading are displayed here
 import { useState } from "react";
 import ItemList from "./ItemList";
 import { FiChevronDown, FiChevronUp } from "react-icons/fi";
 
 const RestaurantCategory = (props) => {
   const [isShow, setIsShow] = useState(false);
-  const { title, itemCards, categories } = props?.items;
-
+  const { title, itemCards } = props?.items;
   return (
     <div>
-      {itemCards && (
+      {itemCards.length > 0 && (
         <div className="border-b-8">
           <div
             className=" cursor-pointer font-bold text-xl py-4 flex justify-between items-center"
@@ -31,6 +31,7 @@ const RestaurantCategory = (props) => {
               )}
             </p>
           </div>
+          {/* Displays all the items in the category on basis of isShow */}
           <div>{isShow && <ItemList data={itemCards} />}</div>
         </div>
       )}

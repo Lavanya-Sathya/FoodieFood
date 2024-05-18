@@ -1,3 +1,4 @@
+// This omponent provides all the items added to the card from the redux
 import { useDispatch } from "react-redux";
 import { IMG_URL } from "../utils/constants";
 import { addItems, removeItem } from "../utils/cartSlice";
@@ -7,7 +8,6 @@ import { FaDrumstickBite } from "react-icons/fa";
 import { FaStarHalfStroke } from "react-icons/fa6";
 const CartList = (props) => {
   const { data } = props;
-  console.log("daata: ", data);
   const dispatch = useDispatch();
   const handleRemove = (item) => {
     dispatch(removeItem(item));

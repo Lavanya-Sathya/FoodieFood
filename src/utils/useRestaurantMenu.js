@@ -1,3 +1,5 @@
+// Fetch data restaurant specific,
+// this is used in RestaurantMenu.
 import { useEffect, useState } from "react";
 import { MENU_API } from "./constants";
 

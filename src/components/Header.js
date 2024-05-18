@@ -1,3 +1,4 @@
+// This component is the Header section of FoodieFood and fixed
 import { Link } from "react-router-dom";
 import logo from "../../images/logo.png";
 import { useSelector } from "react-redux";

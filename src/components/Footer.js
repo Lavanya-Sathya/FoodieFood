@@ -1,3 +1,4 @@
+// This component is the footer section of FoodieFood
 const Footer = () => {
   return (
     <div className="bg-black w-full">

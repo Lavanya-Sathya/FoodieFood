@@ -1,3 +1,4 @@
+// This component provides the structure for the cart
 import { useDispatch, useSelector } from "react-redux";
 import { clearCart } from "../utils/cartSlice";
 import cartImg from "../../images/cart.png";

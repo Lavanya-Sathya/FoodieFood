@@ -1,3 +1,4 @@
+// The horizontal scrollable of different food items in home page(body)
 import { Link } from "react-router-dom";
 import { IMG_URL } from "../utils/constants";
 import { MdChevronLeft, MdChevronRight } from "react-icons/md";

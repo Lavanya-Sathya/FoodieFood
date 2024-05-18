@@ -1,3 +1,4 @@
+// This component is to create a card for each items in the category (Restaurant page)
 import { useDispatch } from "react-redux";
 import { IMG_URL } from "../utils/constants";
 import { addItems } from "../utils/cartSlice";

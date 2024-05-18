@@ -1,4 +1,5 @@
-// Creates the Restaurant cards
+// This components consist of reusable restaurant cards
+
 import { useState } from "react";
 import { IMG_URL } from "../utils/constants";
 

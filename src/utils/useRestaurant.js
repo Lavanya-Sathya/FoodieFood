@@ -1,3 +1,5 @@
+// This will fetch all the restaurant data
+// used in Body
 import { useEffect, useState } from "react";
 import { RES_API } from "./constants";
 const useRestaurant = () => {

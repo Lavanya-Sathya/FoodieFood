@@ -84,6 +84,7 @@ const Body = () => {
             );
           })}
           {/* Display all the cards from the restaurant List */}
+
           {RestaurantList?.map((cards) => (
             <Link to={`/restaurant/${cards?.info?.id}`} key={cards?.info?.id}>
               <RestaurantCard resData={cards?.info} />
