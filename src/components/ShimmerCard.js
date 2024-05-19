@@ -3,9 +3,9 @@ const ShimmerCard = () => {
   const cards = [];
   for (let i = 0; i < 10; i++) {
     cards.push(
-      <div className="cursor-pointer mb-4 w-[280px]" key={i}>
+      <div className="cursor-pointer mb-4 w-[270px]" key={i}>
         <div className="mb-4">
-          <div className="w-[280px] h-[280px] mb-2 rounded-tl-lg rounded-tr-lg shadow-xl ring-1 ring-slate-900/5"></div>
+          <div className="w-[270px] h-[200px] mb-2 rounded-tl-lg rounded-tr-lg shadow-xl ring-1 ring-slate-900/5"></div>
         </div>
         <div className="pl-1 pb-2 ">
           <h3 className="border-gray-400 border-4 w-10/12 rounded-lg"></h3>
