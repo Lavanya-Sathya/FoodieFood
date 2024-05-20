@@ -118,6 +118,7 @@ const RestaurantMenu = () => {
           {` Far ${sla?.lastMileTravelString} |  Delivery fee will apply`}
         </p>
       </div>
+
       {/* filter options are displayed here */}
       <div className="mt-20 flex gap-8 pb-8 border-b-2">
         <label className="flex cursor-pointer select-none items-center border-[1px] px-4 py-2 border-gray-500 rounded-full">

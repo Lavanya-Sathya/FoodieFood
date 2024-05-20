@@ -20,7 +20,6 @@ const Body = () => {
   const [isLessThan, setIsLessThan] = useState(false);
   const [isBetween, setIsBetween] = useState(false);
 
-  const [isFilterHasData, setIsFilterHasData] = useState(true);
   useEffect(() => {
     if (resData) {
       const data =
