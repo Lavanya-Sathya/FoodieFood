@@ -79,10 +79,10 @@ const ItemList = (props) => {
             <div className="relative pb-8">
               <img
                 src={IMG_URL + imageId}
-                className="rounded-lg w-[100px] sm:w-[150px] sm:h-[150px]"
+                className="rounded-lg w-[150px] h-[150px]"
               />
               {count > 0 ? (
-                <div className="w-[100px] sm:w-[150px] bg-white px-6 py-2 rounded-lg text-green-500 shadow-lg absolute  ">
+                <div className="w-[150px] bg-white px-6 py-2 rounded-lg text-green-500 shadow-lg absolute  ">
                   <button className="flex gap-4 justify-center items-center text-lg">
                     <BiMinus
                       size={25}

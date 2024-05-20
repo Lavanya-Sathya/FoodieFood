@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { clearCart } from "../utils/cartSlice";
 import cartImg from "../../images/cart.png";
 import CartList from "./CartList";
+import CartSummary from "./CartSummary";
 const Cart = () => {
   const cartItems = useSelector((store) => store.cart.items);
   const dispatch = useDispatch();
@@ -34,6 +35,11 @@ const Cart = () => {
           </div>
         </div>
       )}
+
+      {/* cart summary  */}
+      <div className="my-10">
+        <CartSummary />
+      </div>
     </div>
   );
 };
