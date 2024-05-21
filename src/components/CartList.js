@@ -18,14 +18,12 @@ const CartList = (props) => {
   return (
     <div>
       {data?.map((item) => {
-        console.log("item from cartList: ", item);
         const {
           id,
           name,
           price,
           ratings,
           defaultPrice,
-          description,
           isVeg,
           isBestseller,
           imageId,
@@ -36,12 +34,12 @@ const CartList = (props) => {
             className="flex justify-between flex-col sm:flex-row mb-4 border-b-2 last:border-none pb-14 sm:pb-4  gap-2"
             key={id}
           >
-            <div className=" text-gray-700 sm:w-8/12 ">
+            <div className=" text-gray-700  ">
               <div className="flex gap-4 items-center">
                 {isVeg ? (
-                  <GiSolidLeaf size={20} className="text-green-700 " />
+                  <GiSolidLeaf size={10} className="text-green-700 " />
                 ) : (
-                  <FaDrumstickBite size={20} className="text-red-600" />
+                  <FaDrumstickBite size={10} className="text-red-600" />
                 )}
                 {isBestseller && (
                   <div className="flex items-center text-orange-600  font-semibold text-lg ">
@@ -51,9 +49,7 @@ const CartList = (props) => {
                 )}
               </div>
               <h1 className="font-bold text-lg">{name}</h1>
-              <h1 className="font-bold text-lg">
-                ₹{price / 100 || defaultPrice / 100}
-              </h1>
+              <h1 className=" text-lg">₹{price / 100 || defaultPrice / 100}</h1>
               {ratings?.aggregatedRating?.rating && (
                 <p>
                   <span className="text-green-700">
@@ -62,18 +58,7 @@ const CartList = (props) => {
                   <span> ({ratings?.aggregatedRating?.ratingCountV2})</span>
                 </p>
               )}
-              <p>{description}</p>
-            </div>
-            <div className="flex flex-col gap-1 pb-8">
-              <img
-                src={IMG_URL + imageId}
-                className="rounded-lg w-[100px] sm:w-[150px] sm:h-[150px]"
-              />
-              <button
-                className="bg-white px-4 py-2 rounded-lg text-green-500 shadow-lg  sm:left-1/4  flex gap-4 justify-center items-center text-lg"
-                // onClick={() => handleRemove(item)}
-                // value={id}
-              >
+              <button className="bg-white px-4 py-2 mt-3 rounded-lg text-green-500 shadow-lg  sm:left-1/4  flex gap-4 justify-center items-center text-lg">
                 <BiMinus
                   size={25}
                   className="opacity-70 hover:opacity-100"
@@ -86,6 +71,15 @@ const CartList = (props) => {
                   onClick={() => handleAdd(item)}
                 />
               </button>
+            </div>
+            <div className="flex flex-col gap-1 pb-8">
+              <img
+                src={IMG_URL + imageId}
+                className="rounded-lg w-[100px] sm:w-[100px] sm:h-[100px]"
+              />
+              <h1 className="font-bold text-lg text-center">
+                ₹{(price / 100 || defaultPrice / 100) * counter}
+              </h1>
             </div>
           </div>
         );

@@ -8,12 +8,10 @@ const BodyMiddle = (props) => {
   const scrollLeftTopRes = () => {
     let slider = document.getElementById("sliderTopRes");
     slider.scrollLeft = slider.scrollLeft - 500;
-    console.log("scrollLeft", slider);
   };
   const scrollRightTopRes = () => {
     let slider = document.getElementById("sliderTopRes");
     slider.scrollLeft = slider.scrollLeft + 500;
-    console.log("scrollRight", slider);
   };
 
   return (

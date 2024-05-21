@@ -83,7 +83,6 @@ const Body = () => {
         return inBetween >= 300 && inBetween <= 600;
       }
     });
-    console.log("filter: ", filter);
     return filter;
   };
   useEffect(() => {

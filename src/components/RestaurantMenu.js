@@ -26,7 +26,6 @@ const RestaurantMenu = () => {
     setRestaurantInfo(restaurantInfo);
     setResCategories(resCategories);
     setFilteredResCategories(resCategories);
-    console.log("resCategories: ", resCategories);
   }, [resMenu]);
 
   // function to filter by veg, non ved and bestseller cards
@@ -70,7 +69,6 @@ const RestaurantMenu = () => {
     } else {
       setFilteredResCategories(resCategories);
     }
-    console.log("filteredResCategories: ", filteredResCategories);
   }, [isVeg, isNonVeg, isBestseller, resCategories]);
 
   const {
