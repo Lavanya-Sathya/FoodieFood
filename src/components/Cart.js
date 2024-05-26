@@ -4,8 +4,22 @@ import { clearCart } from "../utils/cartSlice";
 import cartImg from "../../images/cart.png";
 import CartList from "./CartList";
 import CartSummary from "./CartSummary";
+import useRestaurantMenu from "../utils/useRestaurantMenu";
+import { useEffect, useState } from "react";
 const Cart = () => {
   const cartItems = useSelector((store) => store.cart.items);
+  const [resName, setResName] = useState("");
+  const resId = cartItems?.length > 0 ? cartItems[0]?.restaurantId : 0;
+
+  const resData = useRestaurantMenu(resId);
+
+  useEffect(() => {
+    if (resData !== undefined) {
+      const title = resData?.data?.cards[2]?.card?.card?.info?.name;
+      setResName(title);
+    }
+  }, [resData]);
+
   const dispatch = useDispatch();
   const handleClear = () => {
     dispatch(clearCart());
@@ -22,7 +36,7 @@ const Cart = () => {
         </button>
       </div>
       {cartItems.length > 0 ? (
-        <CartList data={cartItems} />
+        <CartList data={cartItems} title={resName} />
       ) : (
         <div className="flex justify-center items-center gap-6 mb-14">
           <img

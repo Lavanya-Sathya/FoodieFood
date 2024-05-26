@@ -7,7 +7,7 @@ import { GiSolidLeaf } from "react-icons/gi";
 import { FaDrumstickBite } from "react-icons/fa";
 import { FaStarHalfStroke } from "react-icons/fa6";
 const CartList = (props) => {
-  const { data } = props;
+  const { data, title } = props;
   const dispatch = useDispatch();
   const handleRemove = (item) => {
     dispatch(removeItem(item));
@@ -17,6 +17,11 @@ const CartList = (props) => {
   };
   return (
     <div>
+      <div className="my-6 text-center">
+        <h1 className="font-bold text-2xl inline border-b-4 border-orange-600">
+          {title}
+        </h1>
+      </div>
       {data?.map((item) => {
         const {
           id,

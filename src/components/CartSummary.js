@@ -4,7 +4,9 @@ const CartSummary = () => {
   const cartItems = useSelector((store) => store?.cart?.items);
 
   const totalAmt = cartItems.reduce((acc, curr) => {
-    acc += (curr?.card?.info?.price / 100) * curr?.counter;
+    acc +=
+      curr?.card?.info?.price / 100 ||
+      (curr?.card?.info?.defaultPrice / 100) * curr?.counter;
     return acc;
   }, 0);
   const cartLength = cartItems.length;

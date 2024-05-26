@@ -1,11 +1,13 @@
 // This component consist of the  structure for each restaurant
 
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import useRestaurantMenu from "../utils/useRestaurantMenu";
 import RestaurantCategory from "./RestaurantCategory";
 import { FiChevronDown } from "react-icons/fi";
 import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 const RestaurantMenu = () => {
+  const cartItems = useSelector((store) => store?.cart?.items);
   const { resId } = useParams();
   const resMenu = useRestaurantMenu(resId);
 
@@ -183,9 +185,23 @@ const RestaurantMenu = () => {
       {/* All the available categories in the restaurant are displayed here */}
       <div className="my-8">
         {filteredResCategories?.map((item, idx) => (
-          <RestaurantCategory items={item?.card?.card} key={idx} />
+          <RestaurantCategory
+            items={item?.card?.card}
+            restaurantId={id}
+            key={idx}
+          />
         ))}
       </div>
+
+      {/* cart Option */}
+      {cartItems.length > 0 && (
+        <div
+          className={`bg-green-600 text-white h-[50px] w-full fixed left-0 bottom-0  flex justify-between items-center px-5 `}
+        >
+          <p>{cartItems.length} item added</p>
+          <Link to="/cart">View Cart</Link>
+        </div>
+      )}
     </div>
   );
 };
