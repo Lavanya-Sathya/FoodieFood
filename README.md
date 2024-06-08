@@ -1,6 +1,7 @@
 # FoodieFood
 - FoodieFood is a web application built using live data from the Swiggy API, allowing users to explore and order from multiple restaurants conveniently. With FoodieFood, users can search for restaurants by name or food keyword, filter results by ratings and price, view restaurant details, explore available food categories, filter food items by veg or non-veg, add items to their cart, and manage their orders effortlessly.
 
+![screenshot](images/screenshot1.PNG)
 # Features
 - Restaurant Search: Search for restaurants by name or food keyword.
 - Filtering: Filter search results by ratings and price.
